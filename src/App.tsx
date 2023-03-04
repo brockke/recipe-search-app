@@ -1,9 +1,5 @@
 import "./App.css";
 
-import { useState } from "react";
-
-import reactLogo from "./assets/react.svg";
-
 function App() {
   return (
     <div className="flex flex-col items-center animate-fade-in-down h-screen justify-center relative cursor-default">
