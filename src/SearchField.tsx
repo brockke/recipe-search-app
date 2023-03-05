@@ -2,9 +2,11 @@ function SearchField(props: {
   refetch: any;
   queryString: string;
   setQueryString: (queryString: string) => void;
+  setPage: () => void;
 }) {
   const handleKeyDown = (event: any) => {
     if (event.key === "Enter") {
+      props.setPage();
       void props.refetch();
     }
   };
@@ -15,6 +17,7 @@ function SearchField(props: {
           <div className="grid place-items-center h-full w-12">
             <button
               onClick={() => {
+                props.setPage();
                 void props.refetch();
               }}
             >

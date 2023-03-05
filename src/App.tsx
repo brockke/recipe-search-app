@@ -74,6 +74,7 @@ function App() {
           refetch={() => refetch()}
           queryString={queryString}
           setQueryString={(queryString: string) => setQueryString(queryString)}
+          setPage={() => setPage(0)}
         />
         <div>
           {isLoading ? (
