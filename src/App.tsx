@@ -15,9 +15,9 @@ function App() {
   const [queryString, setQueryString] = useState("");
   const [page, setPage] = useState(0);
   const [cuisine, setCusine] = useState("");
+  const NUM_RETURN = 2;
 
   const fetchFood = async (page = 0, queryString: string, cuisine: string) => {
-    const NUM_RETURN = 2;
     return await fetch(
       `https://api.spoonacular.com/recipes/complexSearch?query=${queryString}&number=${NUM_RETURN}&offset=${
         page * NUM_RETURN
@@ -37,7 +37,7 @@ function App() {
     refetchOnWindowFocus: false,
   });
 
-  console.log(data?.results);
+  console.log(data?.totalResults);
   return (
     <div className="flex flex-col items-center animate-fade-in-down h-screen justify-center relative cursor-default">
       <div className="max-w-md mx-auto">
@@ -104,12 +104,12 @@ function App() {
         </button>{" "}
         <button
           onClick={() => {
-            if (!isPreviousData && data.hasMore) {
+            if (!isPreviousData && data?.totalResults > NUM_RETURN * page) {
               setPage((old) => old + 1);
             }
           }}
           // Disable the Next Page button until we know a next page is available
-          disabled={isPreviousData || !data?.hasMore}
+          disabled={isPreviousData || !(data?.totalResults > NUM_RETURN * page)}
         >
           Next Page
         </button>
