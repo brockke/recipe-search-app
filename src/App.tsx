@@ -10,9 +10,7 @@ function App() {
       <Route path="/">
         <SearchField />
       </Route>
-      <Route path="/:name">
-        {(params) => <div>Hello, {params.name}!</div>}
-      </Route>
+      <Route path="/:id">{(params) => <div>Hello, {params.id}!</div>}</Route>
     </div>
   );
 }
