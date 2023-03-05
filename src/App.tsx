@@ -1,15 +1,5 @@
-import "./App.css";
-
 import { useQuery } from "@tanstack/react-query";
-import {
-  JSXElementConstructor,
-  Key,
-  ReactElement,
-  ReactFragment,
-  ReactPortal,
-  useState,
-} from "react";
-// import { env } from "process";
+import { useState } from "react";
 
 function App() {
   const [queryString, setQueryString] = useState("");
@@ -97,7 +87,7 @@ function App() {
               }) => (
                 <div key={food.id}>
                   <p>{food.title}</p>
-                  <h1> {food.image} </h1>
+                  <img src={food.image} />
                 </div>
               ),
             )}
