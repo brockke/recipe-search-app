@@ -28,16 +28,22 @@ function App() {
     ).then((res) => res.json());
   };
 
-  const { isLoading, isError, data, isFetching, isPreviousData } = useQuery({
-    queryKey: ["projects", page],
-    queryFn: () => fetchFood(page, queryString, cuisine),
-    keepPreviousData: true,
-    refetchInterval: false,
-    refetchOnReconnect: false,
-    refetchOnWindowFocus: false,
-  });
+  const { isLoading, isError, data, isFetching, isPreviousData, refetch } =
+    useQuery({
+      queryKey: ["projects", page],
+      queryFn: () => fetchFood(page, queryString, cuisine),
+      keepPreviousData: true,
+      refetchInterval: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false,
+    });
 
-  console.log(data?.totalResults);
+  const handleKeyDown = (event: any) => {
+    if (event.key === "Enter") {
+      void refetch();
+    }
+  };
+
   return (
     <div className="flex flex-col items-center animate-fade-in-down h-screen justify-center relative cursor-default">
       <div className="max-w-md mx-auto">
@@ -45,7 +51,7 @@ function App() {
           <div className="grid place-items-center h-full w-12">
             <button
               onClick={() => {
-                setQueryString("TEST");
+                void refetch();
               }}
             >
               <svg
@@ -63,13 +69,15 @@ function App() {
               </svg>
             </button>
           </div>
-
           <input
             className="peer bg-inherit h-full w-full outline-none text-sm text-black placeholder-gray-400 group-hover:placeholder-amber-50 group-hover:text-amber-50 pr-2"
             type="text"
             id="search"
-            placeholder="Search something..."
+            placeholder="Search recipes..."
             autoFocus
+            value={queryString}
+            onChange={(e) => setQueryString(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
         </div>
       </div>
