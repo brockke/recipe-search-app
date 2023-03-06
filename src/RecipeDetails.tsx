@@ -12,15 +12,14 @@ function RecipeDetails(props: { id: string | undefined }) {
     ).then((res) => res.json());
   };
 
-  const { isLoading, isError, data, isFetching, isPreviousData, refetch } =
-    useQuery({
-      queryKey: ["projects"],
-      queryFn: () => fetchFood(props.id),
-      keepPreviousData: true,
-      refetchInterval: false,
-      refetchOnReconnect: false,
-      refetchOnWindowFocus: false,
-    });
+  const { isLoading, isError, data } = useQuery({
+    queryKey: ["projects"],
+    queryFn: () => fetchFood(props.id),
+    keepPreviousData: true,
+    refetchInterval: false,
+    refetchOnReconnect: false,
+    refetchOnWindowFocus: false,
+  });
   console.log(data);
   return (
     <div>
