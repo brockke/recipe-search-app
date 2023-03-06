@@ -51,7 +51,7 @@ function SearchField() {
         setPage={() => setPage(0)}
         setSeatched={() => setSearch(true)}
       />
-      <label className="text-black font-medium">
+      <label className="text-black font-medium pb-4">
         Pick a cuisine{" "}
         <select
           className="bg-amber-50"
@@ -113,7 +113,7 @@ function SearchField() {
                           className="rounded-lg shadow-lg"
                           src={food.image}
                         />
-                        <div className="">
+                        <div className="pt-4 text-center">
                           <a className="link">{food.title}</a>
                         </div>
                       </Link>
@@ -149,7 +149,7 @@ function SearchField() {
                 }
               }}
               disabled={
-                isPreviousData || !(data?.totalResults > NUM_RETURN * page)
+                isPreviousData || data?.totalResults <= NUM_RETURN * page
               }
             >
               <div className="rounded-full bg-black w-12 h-12 rotate-180">
@@ -184,7 +184,7 @@ const SearchBar = (props: {
     }
   };
   return (
-    <div className="flex flex-col items-center animate-fade-in-down py-32 justify-center relative cursor-default">
+    <div className="flex flex-col items-center animate-fade-in-down pt-32 pb-6 justify-center relative cursor-default">
       <div className="max-w-md mx-auto">
         <div className="relative group flex items-center w-full h-12 rounded-full outline outline-1 outline-black bg-amber-50 hover:bg-black overflow-hidden">
           <div className="grid place-items-center h-full w-12">
